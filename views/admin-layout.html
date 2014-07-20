@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}My Site{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="http://bootswatch.com/2/readable/bootstrap.min.css">
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+    <a class="brand" href="/admin">Blog-file</a>
+    <ul class="nav">
+    <li><a href="/admin/new-post">New Post</a></li>
+    </ul>
+    </div>
+</div>
+<div class="container-fluid">
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+	"posts": [
+	{
+		"title":  "Post 1",
+		"status": "draft",
+		"url": "post-1",
+		"date": ""
+	}]
+}

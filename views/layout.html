@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}My Site{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="http://bootswatch.com/2/readable/bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid">
+	<h1 class="text-center">{{ profile.title }}</h1>
+</div>
+<div class="container">
+
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

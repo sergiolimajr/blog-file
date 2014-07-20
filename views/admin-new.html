@@ -1,0 +1,85 @@
+{% extends 'admin-layout.html' %}
+
+{% block title %}My Page{% endblock %}
+
+{% block content %}
+<style type="text/css">
+	#campo textarea{
+		float: left;
+		width: 100%;
+		height: 500px;
+		border: none;
+	}
+	#campo input{
+		width: 50%;
+		border: none;
+		height: 20px;
+	}
+	#campo select{
+		width: 20%;
+		border: none;
+		height: 20px;
+	}
+	#campo button{
+		margin-top: -10px;
+	}
+
+	#destino{
+		
+	}
+</style>
+
+<div class="row-fluid">
+	<div class="span5" id="campo">
+		<form id="cadastro">
+
+		<input type="text" class="span1" />
+		<select class="span1">
+			<option>Published</option>
+			<option>Draft</option>
+		</select>
+		<button class="btn btn-info">Atualizar</button>
+		<br>
+		<textarea></textarea>	
+		</form>
+	</div>
+	<div class="offset1 span6">
+		<h1 id="titulo" class="text-center"></h1>
+		<div id="destino"></div>
+	</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+
+<script type="text/javascript" src="/js/jquery.js"></script>				
+<script type="text/javascript">
+$(document).ready(function(){
+	var socket = io.connect('http://localhost:3000');
+	$('#titulo').text($('#campo input').val());
+    socket.on('textoserver', function (data) {
+        $('#destino').html(data);
+    });
+    socket.on('tituloserver', function (data) {
+        	$('#titulo').text(data);
+    });
+	
+	$('#campo textarea').on('keyup change',function(event){
+		if(event.which == 8){
+         socket.emit('textoclient', $(this).val());	
+		}else{
+		 socket.emit('textoclient', $(this).val());		
+		}
+		
+	});
+	$('#campo input').on('keyup change', function(){
+		$('#titulo').text($(this).val());
+		 // socket.emit('tituloclient', this.val());
+		
+	});
+	$('#cadastro').submit(function(){
+		console.log("enviando cadastro...");
+	});
+});
+</script>
+{% endblock %}
+
+	
